@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.xml.ws.BindingProvider;
 
 import generated.ws.em.IspybWS;
+import generated.ws.em.MotionCorrection;
 import generated.ws.em.Movie;
 import webservice.UtilsDoNotCommit;
 
@@ -45,7 +46,7 @@ public class TestToolsForEMDataCollectionWebService {
 			initWebService();
 
 			testStoreMovie();
-//		 testFindSession();
+			testStoreMotionCorrection();
 
 		} catch (Exception e) {
 			System.err.println(e.toString());
@@ -85,8 +86,30 @@ public class TestToolsForEMDataCollectionWebService {
 				thumbnailMicrographPath, xmlMetaDataPath, voltage,  sphericalAberration,  amplitudeContrast,  magnification,
 				scannedPixelSize,  noImages,  dosePerImage,  positionX,  positionY,  beamlineName,  gridSquareSnapshotFullPath, startTimeStr);
 
-
 		System.out.println("This is what I got as a response :movie = " + movie.getMoviePath() + "  \n");
 	}
+	
+	private static void testStoreMotionCorrection() throws Exception {			
+		System.out.println("*************** testStoreMotionCorrection ***************");
+		Integer ret = -1;
 
+			String proposal="mx415";
+			String movieFullPath= "/data/visitor/mx415/cm01/20200429/RAW_DATA/like-epu2";
+			String firstFrame = "1";
+			String lastFrame= "99";
+			String dosePerFrame= "1";
+			String doseWeight= "1";
+			String totalMotion= "1";
+			String averageMotionPerFrame= "1";
+			String driftPlotFullPath= "/data/visitor/mx415/cm01/20200429/RAW_DATA/like-epu2";
+			String micrographFullPath= "/data/visitor/mx415/cm01/20200429/RAW_DATA/like-epu2";
+			String micrographSnapshotFullPath = "/data/visitor/mx415/cm01/20200429/RAW_DATA/like-epu2";
+			String correctedDoseMicrographFullPath = "/data/visitor/mx415/cm01/20200429/RAW_DATA/like-epu2";
+			String logFileFullPath = "/data/visitor/mx415/cm01/20200429/RAW_DATA/like-epu2";
+			
+			MotionCorrection motion = ws.addMotionCorrection(proposal, movieFullPath, firstFrame, lastFrame, dosePerFrame, doseWeight, totalMotion, averageMotionPerFrame, driftPlotFullPath, micrographFullPath,
+					micrographSnapshotFullPath, correctedDoseMicrographFullPath, logFileFullPath);
+			
+			System.out.println("This is what I got as a response :motion = " + motion.getLogFileFullPath() + "  \n");
+	}
 }

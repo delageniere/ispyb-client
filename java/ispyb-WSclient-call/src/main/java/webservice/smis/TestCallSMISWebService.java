@@ -63,8 +63,9 @@ public class TestCallSMISWebService {
 
 	private static void testCallSMIS() throws Exception {
 		System.out.println("*************** testfindRecentSessionsInfoLightForProposalPk ***************");
-		Long proposalPk =new Long(31529); //MX415
+		//Long proposalPk =new Long(31529); //MX415
 		//Long proposalPk =new Long(57256); //MX1752
+		Long proposalPk =new Long(93223); //MX2229
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		List<ExpSessionInfoLightVO>  vos = ws.findRecentSessionsInfoLightForProposalPk(proposalPk);
 
@@ -73,7 +74,10 @@ public class TestCallSMISWebService {
 			int i=0;
 			for (Iterator iterator = vos.iterator(); iterator.hasNext();) {
 				ExpSessionInfoLightVO sesVO = (ExpSessionInfoLightVO) iterator.next();
-				System.out.println("Session[" + i + "] = " + sesVO.getBeamlineName() + " - " + formatter.format(sesVO.getStartDate().getTime()) + "\n");
+				System.out.println("Session[" + i + "] = " + sesVO.getBeamlineName() 
+				+ " - " + sesVO.getPk() 
+				+  " - " +formatter.format(sesVO.getStartDate().getTime())
+						+  " - " +formatter.format(sesVO.getEndDate().getTime()) + "\n");
 				i=i+1;
 			}
 			System.out.println("This is what I got as a response :\n" + vos.size() + " entries "+ vos);

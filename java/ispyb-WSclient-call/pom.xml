@@ -20,8 +20,8 @@
     
     <ispyb.wsdl.url.prefix>${url.server.localhost}/ispyb/ispyb-ws/ispybWS</ispyb.wsdl.url.prefix>
     
-    <!--   <smis.wsdl.url>https://smis.esrf.fr/SMISServer-ejb3/SMISWebService/SMISWebServiceBean?wsdl</smis.wsdl.url> -->  
-	<smis.wsdl.url>https://ovm-smis-test.esrf.fr/SMISServer-ejb3/SMISWebService/SMISWebServiceBean?wsdl</smis.wsdl.url>
+    <smis.wsdl.url>https://smis.esrf.fr/SMISServer-ejb3/SMISWebService/SMISWebServiceBean?wsdl</smis.wsdl.url> 
+	<!--   <smis.wsdl.url>https://ovm-smis-test.esrf.fr/SMISServer-ejb3/SMISWebService/SMISWebServiceBean?wsdl</smis.wsdl.url> -->  
 
   </properties>
 
@@ -62,7 +62,7 @@
 	</dependency>
     
 </dependencies>
-<!--  
+<!--  -->
 <build>
 	<plugins>
 	<plugin>
@@ -169,12 +169,31 @@
 					<packageName>generated.ws.mx.shipping</packageName>
 				</configuration>
 		</execution>
+		
+		<execution>
+				<id>em</id>
+				<goals>
+					<goal>wsimport</goal>
+				</goals>			
+				<configuration>
+					<bindingDirectory>src/main/resources</bindingDirectory>
+					<bindingFiles>
+                    	<bindingFile>
+                        		${basedir}/src/main/resources/bindings.xml
+                    	</bindingFile>
+                 	</bindingFiles>
+					<wsdlUrls>
+              			<wsdlUrl>${ispyb.wsdl.url.prefix}/ToolsForEMWebService?wsdl</wsdlUrl>
+            		</wsdlUrls>
+					<packageName>generated.ws.em</packageName>
+				</configuration>
+		</execution>
 
 		</executions>		
 			
 		</plugin>
 	</plugins>
 </build>		
--->
+
 
 </project>

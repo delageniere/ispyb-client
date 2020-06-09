@@ -3,7 +3,6 @@ package webservice.batchUpdate;
 import generated.ws.common.update.Exception_Exception;
 import generated.ws.common.update.IspybWS;
 import generated.ws.common.update.UpdateFromSMISWebService;
-import sun.tools.tree.ThisExpression;
 
 import java.util.Map;
 
@@ -59,7 +58,10 @@ public class UpdateProposalFromSMIS {
 	
 	private static void updateProposal() throws Exception_Exception {
 		String code = "MX";
-		String number = "2003";
+		String number = "2229";
 		ws.updateProposalFromSMIS(code, number);
+		
+		//ws.updateFromSMIS();
+		
 	}
 }

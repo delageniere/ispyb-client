@@ -24,6 +24,7 @@ import generated.ws.mx.collection.IspybWS;
 import generated.ws.mx.collection.PositionWS3VO;
 import generated.ws.mx.collection.RobotActionWS3VO;
 import generated.ws.mx.collection.SessionWS3VO;
+import generated.ws.mx.collection.ToolsForCollectionWebService;
 import generated.ws.mx.collection.Workflow3VO;
 import generated.ws.mx.collection.XdsInfo;
 import generated.ws.mx.collection.XfeFluorescenceSpectrumWS3VO;
@@ -40,7 +41,7 @@ public class TestCollectionToolsWebService {
 
 	
 	protected static generated.ws.mx.collection.IspybWS iws;
-	protected static generated.ws.mx.collection.ToolsForCollectionWebService ws;
+	protected static ToolsForCollectionWebService ws;
 
 	private static void initWebService() throws Exception {
 		
@@ -67,7 +68,8 @@ public class TestCollectionToolsWebService {
 
 //			testStoreSessionDCgrougDcImage();
 //			testStoreOrUpdateBeamLineSetup();
-		 testFindSession();
+//		 testFindSession();
+		 testFindSessionsToBeProtected();
 //			testFindSessionsByProposalAndBeamLine();
 //			 testStoreOrUpdateSession();
 //			 testStoreOrUpdateDataCollection();
@@ -76,7 +78,7 @@ public class TestCollectionToolsWebService {
 //			 testFindDataCollectionGroup();
 //			 testFindDataCollectionFromImageDirectoryAndImagePrefixAndNumber();
 //			 testStoreOrUpdateDataCollectionGroup();
-			 testFindDataCollection();
+//			 testFindDataCollection();
 //			 testStoreOrUpdateXFEFluorescenceSpectrum();
 //			 testStoreOrUpdateEnergyScan();
 //			 testStoreOrUpdateImage();
@@ -91,7 +93,7 @@ public class TestCollectionToolsWebService {
 //			 testSetDataCollectionPosition();
 //			 testStoreOrUpdateGridInfo();
 //			 testSetDataCollectionsPositions();
-			 testGetDataCollectionInfo();
+//			 testGetDataCollectionInfo();
 //			 testSetImagesPositions();
 //			 testSetBestWilsonPlotPath();
 //			 testStoreWorkFlowStep();
@@ -205,6 +207,20 @@ public class TestCollectionToolsWebService {
 		session = ws.findSession(sessionId);
 		if (session != null)
 		System.out.println("This is what I got as a response : SessionValue = " + session.getBeamlineName() + " "+ session.getStartDate() + " "+ session.getBeamlineOperator() + " \n");
+		else 
+			System.out.println("This is what I got as a response : session is null" );
+	}
+	
+	private static void testFindSessionsToBeProtected() throws Exception {
+		System.out.println("*************** testFindSessionsToBeProtected ***************");
+		
+		Iterable<SessionWS3VO> sessions = null;
+		Integer delay = 8;
+		Integer window = 24*15;
+
+		sessions = ws.findSessionsToBeProtected(delay, window);
+		if (sessions != null)
+		System.out.println("This is what I got as a response : SessionValue = " + sessions.toString() + "  \n");
 		else 
 			System.out.println("This is what I got as a response : session is null" );
 	}
@@ -1690,25 +1706,25 @@ public class TestCollectionToolsWebService {
 
 	}
 	
-	private static void testStoreWorkFlowStep() throws Exception {
-		System.out.println("*************** testStoreWorkFlowStep ***************");
-		long startWS = System.currentTimeMillis();
-
-		WorkflowStep3VO vo = new WorkflowStep3VO();
-		vo.setWorkflowId(1);
-		vo.setWorkflowStepType("Test");
-		vo.setComments("tests");
-		Gson gson = new Gson();		
-		String json = gson.toJson(vo);
-		
-		Integer ret = ws.storeWorkflowStep(json);
-		long endWS = System.currentTimeMillis();
-		System.out.println("Time in ms :  " + (endWS - startWS) + "  \n");
-
-		System.out.println("This is what I got as a response : dataCollectionId = " + ret + "  \n");
-
-	}
-	
+//	private static void testStoreWorkFlowStep() throws Exception {
+//		System.out.println("*************** testStoreWorkFlowStep ***************");
+//		long startWS = System.currentTimeMillis();
+//
+//		WorkflowStep3VO vo = new WorkflowStep3VO();
+//		vo.setWorkflowId(1);
+//		vo.setWorkflowStepType("Test");
+//		vo.setComments("tests");
+//		Gson gson = new Gson();		
+//		String json = gson.toJson(vo);
+//		
+//		Integer ret = ws.storeWorkflowStep(json);
+//		long endWS = System.currentTimeMillis();
+//		System.out.println("Time in ms :  " + (endWS - startWS) + "  \n");
+//
+//		System.out.println("This is what I got as a response : dataCollectionId = " + ret + "  \n");
+//
+//	}
+//	
 	private static void testStoreRobotAction() throws Exception {
 		System.out.println("*************** testStoreRobotAction ***************");
 		long startWS = System.currentTimeMillis();

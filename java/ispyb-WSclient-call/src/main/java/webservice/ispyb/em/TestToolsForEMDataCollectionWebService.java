@@ -45,7 +45,7 @@ public class TestToolsForEMDataCollectionWebService {
 			System.out.println("*************** testCollectionWebServices ***************");
 			initWebService();
 
-			testStoreMovie();
+			//testStoreMovie();
 			testStoreMotionCorrection();
 
 		} catch (Exception e) {
@@ -94,18 +94,18 @@ public class TestToolsForEMDataCollectionWebService {
 		Integer ret = -1;
 
 			String proposal="mx415";
-			String movieFullPath= "/data/visitor/mx415/cm01/20200429/RAW_DATA/like-epu2";
+			String movieFullPath= "/data/visitor/mx415/cm01/20200610/RAW_DATA/mx2294_Grid3_ADC_EPU_3/Images-Disc1/GridSquare_27341627/Data/FoilHole_27346716_Data_27345534_27345536_20200527_150537-0089.mrc";
 			String firstFrame = "1";
 			String lastFrame= "99";
 			String dosePerFrame= "1";
 			String doseWeight= "1";
-			String totalMotion= "1";
+			String totalMotion= "200";
 			String averageMotionPerFrame= "1";
-			String driftPlotFullPath= "/data/visitor/mx415/cm01/20200429/RAW_DATA/like-epu2";
-			String micrographFullPath= "/data/visitor/mx415/cm01/20200429/RAW_DATA/like-epu2";
-			String micrographSnapshotFullPath = "/data/visitor/mx415/cm01/20200429/RAW_DATA/like-epu2";
-			String correctedDoseMicrographFullPath = "/data/visitor/mx415/cm01/20200429/RAW_DATA/like-epu2";
-			String logFileFullPath = "/data/visitor/mx415/cm01/20200429/RAW_DATA/like-epu2";
+			String driftPlotFullPath= "/data/visitor/mx415/cm01/20200610/PROCESSED_DATA/mx2294_Grid3_ADC_EPU_3/mx2294_Grid3_ADC_EPU_3_20200610-113853/Runs/000064_ProtMotionCorr/extra/GridSquare_27341627_Data_FoilHole_27346716_Data_27345534_27345536_20200527_150537-0089_global_shifts.png";
+			String micrographFullPath= "";
+			String micrographSnapshotFullPath = "/data/visitor/mx415/cm01/20200610/PROCESSED_DATA/mx2294_Grid3_ADC_EPU_3/mx2294_Grid3_ADC_EPU_3_20200610-113853/Runs/000064_ProtMotionCorr/extra/GridSquare_27341627_Data_FoilHole_27346716_Data_27345534_27345536_20200527_150537-0089_thumbnail.png";
+			String correctedDoseMicrographFullPath = "";
+			String logFileFullPath = "/data/visitor/mx415/cm01/20200610/PROCESSED_DATA/mx2294_Grid3_ADC_EPU_3/mx2294_Grid3_ADC_EPU_3_20200610-113853/Runs/000064_ProtMotionCorr/logs/run.log";
 			
 			MotionCorrection motion = ws.addMotionCorrection(proposal, movieFullPath, firstFrame, lastFrame, dosePerFrame, doseWeight, totalMotion, averageMotionPerFrame, driftPlotFullPath, micrographFullPath,
 					micrographSnapshotFullPath, correctedDoseMicrographFullPath, logFileFullPath);

@@ -48,13 +48,13 @@ public class TestCallSMISWebService {
 			System.out.println("*************** testCallSMISWebServices ***************");
 			initWebService();
 			testCallSMIS();
-			testFindSamplesheetInfoLightForProposalPk();
+			//testFindSamplesheetInfoLightForProposalPk();
 			//testFindMainProposersForProposal();
 			//testFindSessionsByBeamlineAndDates();
 			//testFindModifiedProposals();
 			//testFindScientistsForProposal();
 			//testPersonsForProposal();
-
+			testFindSessionsByProposalPk();
 		} catch (Exception e) {
 			System.err.println(e.toString());
 			e.printStackTrace();
@@ -168,6 +168,27 @@ public class TestCallSMISWebService {
 		cal1.roll(Calendar.YEAR, -1);
 		
 		List<ExpSessionInfoLightVO>  vos = ws.findSessionsByBeamlineAndDates(bl , cal1, cal2);
+		if (vos != null) {
+			System.out.println("Sessions length = " + vos.size() + "\n");
+			int i=0;
+			for (Iterator<ExpSessionInfoLightVO> iterator = vos.iterator(); iterator.hasNext();) {
+				ExpSessionInfoLightVO sesVO = (ExpSessionInfoLightVO) iterator.next();
+				System.out.println("Session[" + i + "] = " + sesVO.toString() + "\n");
+				i=i+1;
+			}
+			System.out.println("This is what I got as a response :\n" + vos.toString() + vos);
+		} else
+			System.out.println("This is what I got as a response : NULL \n");
+		System.out.println();
+		System.out.println("------");
+	}
+	
+	private static void testFindSessionsByProposalPk() throws Exception {
+		System.out.println("*************** testfindSessionsByBeamlineAndDates ***************");
+		//Long proposalPk =new Long(1170); //MX415
+		Long proposalPk =new Long(96193); //IM
+		
+		List<ExpSessionInfoLightVO>  vos = ws.findSessionsInfoLightForProposalPk(proposalPk);
 		if (vos != null) {
 			System.out.println("Sessions length = " + vos.size() + "\n");
 			int i=0;
